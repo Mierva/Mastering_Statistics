@@ -29,16 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.file_button = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea16 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series21 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series22 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea18 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series23 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series24 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.column_bar = new System.Windows.Forms.TrackBar();
-            this.create = new System.Windows.Forms.Button();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -60,19 +58,18 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.variant = new System.Windows.Forms.RichTextBox();
-            this.log_button = new System.Windows.Forms.Button();
-            this.standart_button = new System.Windows.Forms.Button();
             this.probability_field = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.a_value = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.відкритиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.очиститиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.перетворенняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.логарифмуванняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.стандартизаціяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.file_menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.transformation_menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toLog = new System.Windows.Forms.ToolStripMenuItem();
+            this.toNormal = new System.Windows.Forms.ToolStripMenuItem();
+            this.createFile = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.column_bar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.tabControl2.SuspendLayout();
@@ -89,13 +86,6 @@
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // file_button
-            // 
-            resources.ApplyResources(this.file_button, "file_button");
-            this.file_button.Name = "file_button";
-            this.file_button.UseVisualStyleBackColor = true;
-            this.file_button.Click += new System.EventHandler(this.file_button_Click);
-            // 
             // column_bar
             // 
             this.column_bar.BackColor = System.Drawing.Color.White;
@@ -104,27 +94,20 @@
             this.column_bar.Name = "column_bar";
             this.column_bar.Scroll += new System.EventHandler(this.column_bar_Scroll);
             // 
-            // create
-            // 
-            resources.ApplyResources(this.create, "create");
-            this.create.Name = "create";
-            this.create.UseVisualStyleBackColor = true;
-            this.create.Click += new System.EventHandler(this.create_Click);
-            // 
             // chart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea1);
+            chartArea16.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea16);
             this.chart.IsSoftShadows = false;
             resources.ApplyResources(this.chart, "chart");
             this.chart.Name = "chart";
             this.chart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
-            series1.BorderColor = System.Drawing.Color.Black;
-            series1.ChartArea = "ChartArea1";
-            series1.Color = System.Drawing.SystemColors.InactiveCaption;
-            series1.CustomProperties = "PointWidth=1";
-            series1.Name = "Series1";
-            this.chart.Series.Add(series1);
+            series21.BorderColor = System.Drawing.Color.Black;
+            series21.ChartArea = "ChartArea1";
+            series21.Color = System.Drawing.SystemColors.InactiveCaption;
+            series21.CustomProperties = "PointWidth=1";
+            series21.Name = "Series1";
+            this.chart.Series.Add(series21);
             this.chart.Click += new System.EventHandler(this.chart_Click);
             // 
             // tabControl2
@@ -162,34 +145,34 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
+            chartArea17.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea17);
             resources.ApplyResources(this.chart1, "chart1");
             this.chart1.Name = "chart1";
-            series2.BorderColor = System.Drawing.Color.Black;
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
-            series2.Color = System.Drawing.Color.Maroon;
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
+            series22.BorderColor = System.Drawing.Color.Black;
+            series22.BorderWidth = 2;
+            series22.ChartArea = "ChartArea1";
+            series22.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
+            series22.Color = System.Drawing.Color.Maroon;
+            series22.Name = "Series1";
+            this.chart1.Series.Add(series22);
             // 
             // prob_grid
             // 
-            chartArea3.Name = "ChartArea1";
-            this.prob_grid.ChartAreas.Add(chartArea3);
+            chartArea18.Name = "ChartArea1";
+            this.prob_grid.ChartAreas.Add(chartArea18);
             resources.ApplyResources(this.prob_grid, "prob_grid");
             this.prob_grid.Name = "prob_grid";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            series3.Name = "Series1";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            series4.Name = "Series2";
-            this.prob_grid.Series.Add(series3);
-            this.prob_grid.Series.Add(series4);
+            series23.ChartArea = "ChartArea1";
+            series23.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series23.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            series23.Name = "Series1";
+            series24.ChartArea = "ChartArea1";
+            series24.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series24.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            series24.Name = "Series2";
+            this.prob_grid.Series.Add(series23);
+            this.prob_grid.Series.Add(series24);
             // 
             // tabControl1
             // 
@@ -301,20 +284,6 @@
             this.variant.Name = "variant";
             this.variant.ReadOnly = true;
             // 
-            // log_button
-            // 
-            resources.ApplyResources(this.log_button, "log_button");
-            this.log_button.Name = "log_button";
-            this.log_button.UseVisualStyleBackColor = true;
-            this.log_button.Click += new System.EventHandler(this.log_button_Click);
-            // 
-            // standart_button
-            // 
-            resources.ApplyResources(this.standart_button, "standart_button");
-            this.standart_button.Name = "standart_button";
-            this.standart_button.UseVisualStyleBackColor = true;
-            this.standart_button.Click += new System.EventHandler(this.standart_button_Click);
-            // 
             // probability_field
             // 
             resources.ApplyResources(this.probability_field, "probability_field");
@@ -337,48 +306,60 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.White;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem,
-            this.перетворенняToolStripMenuItem});
+            this.file_menu,
+            this.transformation_menu,
+            this.createFile});
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
-            // файлToolStripMenuItem
+            // file_menu
             // 
-            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.відкритиToolStripMenuItem,
-            this.очиститиToolStripMenuItem});
-            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            resources.ApplyResources(this.файлToolStripMenuItem, "файлToolStripMenuItem");
+            this.file_menu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openFile,
+            this.clearFile});
+            this.file_menu.Name = "file_menu";
+            resources.ApplyResources(this.file_menu, "file_menu");
             // 
-            // відкритиToolStripMenuItem
+            // openFile
             // 
-            this.відкритиToolStripMenuItem.Name = "відкритиToolStripMenuItem";
-            resources.ApplyResources(this.відкритиToolStripMenuItem, "відкритиToolStripMenuItem");
+            this.openFile.Name = "openFile";
+            resources.ApplyResources(this.openFile, "openFile");
+            this.openFile.Click += new System.EventHandler(this.openFile_Click);
             // 
-            // очиститиToolStripMenuItem
+            // clearFile
             // 
-            this.очиститиToolStripMenuItem.Name = "очиститиToolStripMenuItem";
-            resources.ApplyResources(this.очиститиToolStripMenuItem, "очиститиToolStripMenuItem");
+            this.clearFile.Name = "clearFile";
+            resources.ApplyResources(this.clearFile, "clearFile");
+            this.clearFile.Click += new System.EventHandler(this.clearFile_Click);
             // 
-            // перетворенняToolStripMenuItem
+            // transformation_menu
             // 
-            this.перетворенняToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.логарифмуванняToolStripMenuItem,
-            this.стандартизаціяToolStripMenuItem});
-            this.перетворенняToolStripMenuItem.Name = "перетворенняToolStripMenuItem";
-            resources.ApplyResources(this.перетворенняToolStripMenuItem, "перетворенняToolStripMenuItem");
+            this.transformation_menu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toLog,
+            this.toNormal});
+            this.transformation_menu.Name = "transformation_menu";
+            resources.ApplyResources(this.transformation_menu, "transformation_menu");
             // 
-            // логарифмуванняToolStripMenuItem
+            // toLog
             // 
-            this.логарифмуванняToolStripMenuItem.Name = "логарифмуванняToolStripMenuItem";
-            resources.ApplyResources(this.логарифмуванняToolStripMenuItem, "логарифмуванняToolStripMenuItem");
+            this.toLog.Name = "toLog";
+            resources.ApplyResources(this.toLog, "toLog");
+            this.toLog.Click += new System.EventHandler(this.toLog_Click);
             // 
-            // стандартизаціяToolStripMenuItem
+            // toNormal
             // 
-            this.стандартизаціяToolStripMenuItem.Name = "стандартизаціяToolStripMenuItem";
-            resources.ApplyResources(this.стандартизаціяToolStripMenuItem, "стандартизаціяToolStripMenuItem");
+            this.toNormal.Name = "toNormal";
+            resources.ApplyResources(this.toNormal, "toNormal");
+            this.toNormal.Click += new System.EventHandler(this.toNormal_Click);
+            // 
+            // createFile
+            // 
+            this.createFile.Name = "createFile";
+            resources.ApplyResources(this.createFile, "createFile");
+            this.createFile.Click += new System.EventHandler(this.createFile_Click);
             // 
             // Form1
             // 
@@ -388,12 +369,8 @@
             this.Controls.Add(this.a_value);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.probability_field);
-            this.Controls.Add(this.standart_button);
-            this.Controls.Add(this.log_button);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.tabControl2);
-            this.Controls.Add(this.create);
-            this.Controls.Add(this.file_button);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -421,8 +398,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button file_button;
-        private System.Windows.Forms.Button create;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage3;
@@ -431,8 +406,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.RichTextBox variant;
-        private System.Windows.Forms.Button log_button;
-        private System.Windows.Forms.Button standart_button;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         public System.Windows.Forms.TrackBar column_bar;
         private System.Windows.Forms.TextBox probability_field;
@@ -452,12 +425,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn trusted;
         private System.Windows.Forms.DataGridViewTextBoxColumn sqrd;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem відкритиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem очиститиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem перетворенняToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem логарифмуванняToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem стандартизаціяToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem file_menu;
+        private System.Windows.Forms.ToolStripMenuItem openFile;
+        private System.Windows.Forms.ToolStripMenuItem clearFile;
+        private System.Windows.Forms.ToolStripMenuItem transformation_menu;
+        private System.Windows.Forms.ToolStripMenuItem toLog;        
+        private System.Windows.Forms.ToolStripMenuItem toNormal;
+        private System.Windows.Forms.ToolStripMenuItem createFile;
     }
 }
 

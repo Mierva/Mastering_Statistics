@@ -46,11 +46,8 @@ namespace histograms
         public static double sigma = 0;
         public static double avg   = 0;         
         
-        List<string> father;
-        List<string> son;
-        List<double> temple;
-
-        List<string> cleaned_data;
+        List<string> father, son, cleaned_data;        
+        List<double> temple;       
 
         double excess, counter_excess, selective_avg, asymmetry;
 
@@ -60,31 +57,78 @@ namespace histograms
             InitializeComponent();
         }
         #region Buttons
-        private void file_button_Click(object sender, EventArgs e)
-        {
-            father = ReadFile();
-            son    = father;
-        }
-        private void create_Click(object sender, EventArgs e)
+        private void createFile_Click(object sender, EventArgs e)
         {
             try
             {
-                if (son.Count != 0)
-                    Create(son);
+                if (son == null)
+                    throw new FileNotFoundException();
+                else if (son.Count == 1)
+                    throw new WarningException();            
                 else
-                    throw new NullReferenceException();
-                
-                if (click_count == 1)
-                    click_count = 0;                
+                {
+                    Create(son);
+
+                    if (click_count == 1)
+                        click_count = 0;
+                }
             }
-            catch (NullReferenceException none)
+            catch (WarningException ex)
             {
-                MessageBox.Show($"Виникла непедбачувана ситуація:\n{none.Message}", "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Замала кількість даних.", "Попередження!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Виникла непедбачувана ситуація:\n{ex.Message}", "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error);            
-            }            
+                MessageBox.Show($"Виникла непедбачувана ситуація:\n{ex.Message}", "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void openFile_Click(object sender, EventArgs e)
+        {
+            father = ReadFile();
+            son = father;
+        }
+        private void clearFile_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
+        private void toLog_Click(object sender, EventArgs e)
+        {
+            click_count = 0;
+            List<double> sample = ListConv(son);
+            List<double> brand_new = new List<double>();
+            double new_x = 0;
+
+            double min = 0;
+            for (int i = 0; i < sample.Count; i++)
+            {
+                if (sample[i] < 0 && min > sample[i])
+                    min = sample[i];
+            }
+
+            for (int i = 0; i < sample.Count; i++)
+            {
+                new_x = sample[i] + Math.Abs(min) + probability;
+                brand_new.Add(Math.Round(Math.Log10(new_x), 4));
+            }
+
+            List<string> transfer = ToString(brand_new);
+            Create(transfer);
+        }
+        private void toNormal_Click(object sender, EventArgs e)
+        {
+            if (click_count != 0) return;
+            else
+            {
+                click_count = 1;
+                List<double> sample = ListConv(son);
+                List<double> brand_new = new List<double>();
+
+                for (int i = 0; i < sample.Count; i++)
+                    brand_new.Add((sample[i] - avg) / sigma);
+
+                List<string> transfer = ToString(brand_new);
+                Create(transfer);
+            }
         }
         private void chart_Click(object sender, EventArgs e)
         {
@@ -103,45 +147,7 @@ namespace histograms
                 Create(son);
             }                  
         }
-        private void log_button_Click(object sender, EventArgs e)
-        {
-            click_count = 0;
-            List<double> sample = ListConv(son);
-            List<double> brand_new = new List<double>();
-            double new_x = 0;
 
-            double min = 0;
-            for (int i = 0; i < sample.Count; i++)
-            {
-                if (sample[i] < 0 && min > sample[i])
-                    min = sample[i];
-            }
-
-            for (int i = 0; i < sample.Count; i++)
-            {
-                new_x = sample[i] + Math.Abs(min) + probability;
-                brand_new.Add(Math.Round(Math.Log10(new_x), 4));               
-            }              
-
-            List<string> transfer = ToString(brand_new);
-            Create(transfer);
-        }
-        private void standart_button_Click(object sender, EventArgs e)
-        {
-            if(click_count != 0) return;
-            else
-            {
-                click_count = 1;
-                List<double> sample = ListConv(son);
-                List<double> brand_new = new List<double>();
-
-                for (int i = 0; i < sample.Count; i++)
-                    brand_new.Add((sample[i] - avg) / sigma);
-
-                List<string> transfer = ToString(brand_new);
-                Create(transfer);
-            }
-        }
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             classes = trackBar1.Value;
