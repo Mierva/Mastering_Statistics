@@ -41,11 +41,13 @@ namespace histograms
             }
         }
 
-        public static int mark     = 0;
-        public static int classes  = 0;
-        public static double sigma = 0;
-        public static double avg   = 0;         
-        
+        public static int mark      = 0;
+        public static int classes   = 0;
+        public static double sigma  = 0;
+        public static double avg    = 0;
+        public static double pirson = 0;
+
+
         List<string> father, son, cleaned_data;        
         List<double> temple;       
 
@@ -185,10 +187,10 @@ namespace histograms
         public void Create(List<string> local_list)
         {
             Clear();
-            double temp;            
+            double temp;
             double.TryParse(probability_field.Text.Replace(".", ","), out temp);
             Probability = temp;
-            double.TryParse(a_value.Text.Replace(".", ","), out temp);            
+            double.TryParse(a_value.Text.Replace(".", ","), out temp);
             Koeficcient = temp;
 
             List<double> sample = ListConv(local_list);
@@ -210,9 +212,9 @@ namespace histograms
             List<double> upper_interval = intervals[0];
             List<double> lower_interval = intervals[1];
 
-            variation[] variants   = GetVarianta(upper_interval, lower_interval, sample);
+            variation[] variants = GetVarianta(upper_interval, lower_interval, sample);
             selective_avg = Features.GetSelectiveAvg(variants);
-            sigma         = Features.GetSigma(variants, h, sample);            
+            sigma = Features.GetSigma(variants, h, sample);
 
             // підрахунок цих трьох значень тісно зв'язаний,
             // тому раціональніше вивести список який містить всі значення.
@@ -221,53 +223,66 @@ namespace histograms
             excess = Excess_asymmetry[1];
             counter_excess = Excess_asymmetry[2];
 
-            double pirson = (sigma / avg) * 100;
+            pirson = (sigma / avg) * 100;
             double selective_median = Features.GetMedian(sample);
-            decimal walsh_median    = Features.GetWalshMedian(sample, N);
-            decimal truncated_mean  = Features.GetTruncatedMean(koeficcient, N, sample);
+            decimal walsh_median = Features.GetWalshMedian(sample, N);
+            decimal truncated_mean = Features.GetTruncatedMean(koeficcient, N, sample);
 
             List<double> freqs = Empiric.GetFreqs(variants);
             DrawChart(variants, lower_interval);
             DrawEmpiricFunction(variants, lower_interval, freqs);
             DrawProbabilityGrid(variants, lower_interval, freqs, sample);
 
-            // довірчиві інтервали.
-            List<List<double>> ints = new List<List<double>>();
-            ints.Add(GetTrustIntervals(avg, N, probability));
-            ints.Add(GetTrustIntervals(sigma, N, probability));
-            ints.Add(GetTrustIntervals(excess, N, probability));
-            ints.Add(GetTrustIntervals(asymmetry, N, probability));
-            ints.Add(GetTrustIntervals(pirson, N, probability));
-            ints.Add(GetTrustIntervals(counter_excess, N, probability));
-            ints.Add(GetTrustIntervals(selective_avg, N, probability));
-            
-            result.Rows.Add("Класи", classes);
-            result.Rows.Add("Сер.ариф",Math.Round(avg, 4), 
-                Math.Round(ints[0][0],4)+" < "+ Math.Round(ints[0][1],4) +" < "+Math.Round(ints[0][2],4));
-            result.Rows.Add("Мінімальне", Math.Round(min,4));
-            result.Rows.Add("Максимальне", Math.Round(max, 4));
-            result.Rows.Add("Сер.кв.відхилення", Math.Round(sigma, 4), 
-                Math.Round(ints[1][0],4) + " < " + Math.Round(ints[1][1],4) + " < " + Math.Round(ints[1][2],4));
-            result.Rows.Add("Коеф.асиметрії", Math.Round(asymmetry, 4), 
-                Math.Round(ints[2][0],4) + " < " + Math.Round(ints[2][1],4) + " < " + Math.Round(ints[2][2],4));
-            result.Rows.Add("Ексцес", Math.Round(excess, 4),
-                Math.Round(ints[3][0],4) + " < " + Math.Round(ints[3][1],4) + " < " + Math.Round(ints[3][2],4));
-            result.Rows.Add("Контрексцес", Math.Round(counter_excess, 4), 
-                Math.Round(ints[4][0],4) + " < " + Math.Round(ints[4][1],4) + " < " + Math.Round(ints[4][2],4));
-            result.Rows.Add("Коеф.Пірсона", Math.Round(pirson, 4), 
-                Math.Round(ints[5][0],4) + " < " + Math.Round(ints[5][1],4) + " < " + Math.Round(ints[5][2],4));
-            result.Rows.Add("Вибіркова медіана", Math.Round(selective_avg, 4), 
-                Math.Round(ints[6][0],4) + " < " + Math.Round(ints[6][1],4) + " < " + Math.Round(ints[6][2],4));
-            result.Rows.Add("Медіана Уолша", Math.Round(walsh_median, 4));
-            result.Rows.Add("Усічене середнє", Math.Round(truncated_mean, 4));
+            List<List<double>> confidence_intervals = AddConfidenceIntervals(N,sample);
+
+            ShowStatistics(min, max, pirson, walsh_median, truncated_mean, confidence_intervals);
 
             for (int i = 0; i < variants.Length; i++)
-                variationGrid.Rows.Add(i,variants[i].value, variants[i].reps, variants[i].freq);
+                variationGrid.Rows.Add(i, variants[i].value, variants[i].reps, variants[i].freq);
 
             variationGrid.Rows.Add(0.05, chart.DataManipulator.Statistics.NormalDistribution(0.95));
             variationGrid.Rows.Add(0.05, chart.DataManipulator.Statistics.InverseNormalDistribution(0.95));
             variationGrid.Rows.Add(0.05, chart.DataManipulator.Statistics.GammaFunction(0.95));
         }
+
+        private List<List<double>> AddConfidenceIntervals(int N, List<double> sample)
+        {
+            Squared data = new Squared(N,sample,avg);            
+
+            List<List<double>> ints = new List<List<double>>();
+            ints.Add(GetConfidenceInterval(avg, data.GetMean(sigma), N, probability));
+            ints.Add(GetConfidenceInterval(sigma, data.GetSigma(sigma), N, probability));            
+            ints.Add(GetConfidenceInterval(asymmetry, data.GetAssymetry(), N, probability));            
+            ints.Add(GetConfidenceInterval(excess, data.GetExcess(), N, probability));// 3            
+            ints.Add(GetConfidenceInterval(counter_excess, data.GetCounterExcess(excess), N, probability));
+            ints.Add(GetConfidenceInterval(pirson, data.GetPirson(pirson), N, probability));           
+            ints.Add(GetConfidenceInterval(selective_avg, data.GetMean(selective_avg), N, probability));
+
+            return ints;
+        }
+        private void ShowStatistics(double min, double max, double pirson, decimal walsh_median, decimal truncated_mean, List<List<double>> ints)
+        {            
+            result.Rows.Add("Класи", classes);
+            result.Rows.Add("Сер.ариф", Math.Round(avg, 4),
+                Math.Round(ints[0][0], 4) + " < " + Math.Round(ints[0][1], 4) + " < " + Math.Round(ints[0][2], 4));
+            result.Rows.Add("Мінімальне", Math.Round(min, 4));
+            result.Rows.Add("Максимальне", Math.Round(max, 4));
+            result.Rows.Add("Сер.кв.відхилення", Math.Round(sigma, 4),
+                Math.Round(ints[1][0], 4) + " < " + Math.Round(ints[1][1], 4) + " < " + Math.Round(ints[1][2], 4));
+            result.Rows.Add("Коеф.асиметрії", Math.Round(asymmetry, 4),
+                Math.Round(ints[2][0], 4) + " < " + Math.Round(ints[2][1], 4) + " < " + Math.Round(ints[2][2], 4));
+            result.Rows.Add("Ексцес", Math.Round(excess, 4),
+                Math.Round(ints[3][0], 4) + " < " + Math.Round(ints[3][1], 4) + " < " + Math.Round(ints[3][2], 4));
+            result.Rows.Add("Контрексцес", Math.Round(counter_excess, 4),
+                Math.Round(ints[4][0], 4) + " < " + Math.Round(ints[4][1], 4) + " < " + Math.Round(ints[4][2], 4));
+            result.Rows.Add("Коеф.Пірсона", Math.Round(pirson, 4),
+                Math.Round(ints[5][0], 4) + " < " + Math.Round(ints[5][1], 4) + " < " + Math.Round(ints[5][2], 4));
+            result.Rows.Add("Вибіркова медіана", Math.Round(selective_avg, 4),
+                Math.Round(ints[6][0], 4) + " < " + Math.Round(ints[6][1], 4) + " < " + Math.Round(ints[6][2], 4));
+            result.Rows.Add("Медіана Уолша", Math.Round(walsh_median, 4));
+            result.Rows.Add("Усічене середнє", Math.Round(truncated_mean, 4));
+        }
+
         public List<string> ReadFile()
         {
             string line = "";
@@ -375,18 +390,22 @@ namespace histograms
             
             return variants;
         }
-        public List<double> GetTrustIntervals(double local_theta, int N, double probability)
+        public List<double> GetConfidenceInterval(double local_theta, double squared_value,int N, double probability)
         {
             List<double> trustIntervals = new List<double>();
-            //double miss_prob = 1 - probability;
+            //double miss_prob = 1 - probability;         
             int degreeOfFreedom = N - 1;
             double quantile = 0;
             if (N > 60)
                 quantile = chart.DataManipulator.Statistics.InverseTDistribution(probability, degreeOfFreedom);
             else
-                quantile = chart.DataManipulator.Statistics.InverseNormalDistribution(probability);            
-            double lower = local_theta - quantile * sigma;
-            double upper = local_theta + quantile * sigma;
+                quantile = chart.DataManipulator.Statistics.InverseNormalDistribution(probability);      
+            
+            double lower = local_theta - (quantile * squared_value);
+            result.Rows.Add("lower", $"{local_theta} - ({quantile}*{squared_value})");
+            double upper = local_theta + (quantile * squared_value);
+            result.Rows.Add("upper", $"{local_theta} - ({quantile}*{squared_value})");
+
             trustIntervals.Add(lower);
             trustIntervals.Add(local_theta);
             trustIntervals.Add(upper);
