@@ -61,7 +61,7 @@ namespace histograms
         #region Buttons
         private void createFile_Click(object sender, EventArgs e)
         {
-            try
+            /*try
             {
                 if (son == null)
                     throw new FileNotFoundException();
@@ -82,7 +82,11 @@ namespace histograms
             catch (Exception ex)
             {
                 MessageBox.Show($"Виникла непедбачувана ситуація:\n{ex.Message}", "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }*/
+            Create(son);
+
+            if (click_count == 1)
+                click_count = 0;
         }
         private void openFile_Click(object sender, EventArgs e)
         {
@@ -208,25 +212,26 @@ namespace histograms
             double max = sample.Max();
             double h = Math.Round((max - min) / classes, 4);
 
-            List<List<double>> intervals = Features.GetIntervals(min, max, h);
+
+            Features features = new Features(classes);
+            List<List<double>> intervals = features.GetIntervals(min, max, h);
             List<double> upper_interval = intervals[0];
             List<double> lower_interval = intervals[1];
 
             variation[] variants = GetVarianta(upper_interval, lower_interval, sample);
-            selective_avg = Features.GetSelectiveAvg(variants);
-            sigma = Features.GetSigma(variants, h, sample);
+            selective_avg = features.GetSelectiveAvg(variants);
+            sigma = features.GetSigma(variants, h, sample);
 
             // підрахунок цих трьох значень тісно зв'язаний,
             // тому раціональніше вивести список який містить всі значення.
-            List<double> Excess_asymmetry = Features.GetEx_Asym_CEx(sample, variants, sigma, selective_avg);
+            List<double> Excess_asymmetry = features.GetEx_Asym_CEx(sample, variants, sigma, selective_avg);
             asymmetry = Excess_asymmetry[0];
             excess = Excess_asymmetry[1];
             counter_excess = Excess_asymmetry[2];
 
-            pirson = (sigma / avg) * 100;
-            double selective_median = Features.GetMedian(sample);
-            decimal walsh_median = Features.GetWalshMedian(sample, N);
-            decimal truncated_mean = Features.GetTruncatedMean(koeficcient, N, sample);
+            pirson = (sigma / avg) * 100;            
+            decimal walsh_median = features.GetWalshMedian(sample, N);
+            decimal truncated_mean = features.GetTruncatedMean(koeficcient, N, sample);
 
             List<double> freqs = Empiric.GetFreqs(variants);
             DrawChart(variants, lower_interval);

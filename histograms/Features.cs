@@ -11,10 +11,33 @@ namespace histograms
     /// <summary>
     /// Підрахунок статистик.
     /// </summary>
-    public partial class Features : Form1
-    {       
+    public partial class Features
+    {
+        private int classes;
+        public Features(int fClasses)
+        {
+            classes = fClasses;
+        }
+        public double GetSigma(variation[] variants, double h, List<double> sample)
+        {
+            double sigma = 0;
+            double A = variants[0].value;
+            List<double> x_moment = new List<double>();
+            List<double> x_square = new List<double>();
+            for (int i = 0; i < variants.Length; i++)
+            {
+                x_moment.Add(((variants[i].value - A) / h) * variants[i].reps);
+                x_square.Add(Math.Pow((variants[i].value - A) / h, 2) * variants[i].reps);
+            }
+            double x_All = x_moment.Sum();
+            double for_square_root = (x_All / sample.Count) * h + A;
+            double square_root = x_square.Sum();
+
+            sigma = Math.Sqrt((square_root / sample.Count) * Math.Pow(h, 2) - Math.Pow(for_square_root - A, 2));
+            return sigma;
+        }
         /// <returns>Список з коефіцієнтом асиметрії, ексцес, контрексцес.</returns>
-        public static List<double> GetEx_Asym_CEx(List<double> sample, variation[] variants, double sigma, double selective_avg)
+        public List<double> GetEx_Asym_CEx(List<double> sample, variation[] variants, double sigma, double selective_avg)
         {
             List<double> values = new List<double>();
             double asymmetry = 0;
@@ -43,7 +66,7 @@ namespace histograms
 
             return values;
         }
-        public static List<List<double>> GetIntervals(double min, double max, double h)
+        public List<List<double>> GetIntervals(double min, double max, double h)
         {
             List<double> upper_interval = new List<double>();
             List<double> lower_interval = new List<double>();
@@ -83,7 +106,7 @@ namespace histograms
 
             return trusted_intervals;
         }*/
-        public static double GetSelectiveAvg(variation[] variants)
+        public double GetSelectiveAvg(variation[] variants)
         {
             double selective_a = 0;
             double selective_b = 0;
@@ -95,7 +118,7 @@ namespace histograms
 
             return selective_a / selective_b;
         }
-        public static double GetSigma(variation[] variants, double h, List<double> sample)
+        public double GetDispersion(variation[] variants, double h, List<double> sample)
         {
             double sigma = 0;
             double A = variants[0].value;
@@ -110,10 +133,10 @@ namespace histograms
             double for_square_root = (x_All / sample.Count) * h + A;
             double square_root = x_square.Sum();
 
-            sigma = Math.Sqrt((square_root / sample.Count) * Math.Pow(h, 2) - Math.Pow(for_square_root - A, 2));
+            sigma = (square_root / sample.Count) * Math.Pow(h, 2) - Math.Pow(for_square_root - A, 2);
             return sigma;
         }
-        public static double GetMedian(List<double> sample)
+        public double GetMedian(List<double> sample)
         {
             double median = 0;
             int N = sample.Count;
@@ -123,7 +146,7 @@ namespace histograms
                 median = Convert.ToDouble(sample[N / 2]);
             return median;
         }
-        public static decimal GetWalshMedian(List<double> sample, int N)
+        public decimal GetWalshMedian(List<double> sample, int N)
         {
             decimal walsh_median = 0.0m;
             List<double> X = new List<double>();
@@ -140,11 +163,11 @@ namespace histograms
             return walsh_median;
         }
         /// <returns>Усічене середнє.</returns>
-        public static decimal GetTruncatedMean(double koef, int N, List<double> sample)
+        public decimal GetTruncatedMean(double koef, int N, List<double> sample)
         {
             decimal truncated_mean = 0.0m;
             int k = Convert.ToInt32(koef * N);
-           
+
             double sum = 0;
             for (int i = k + 1; i < N - k; i++)
                 sum += sample[i];
