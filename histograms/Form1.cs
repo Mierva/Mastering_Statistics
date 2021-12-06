@@ -169,7 +169,7 @@ namespace histograms
 
         private void createFile_Click(object sender, EventArgs e)
         {
-            try
+            /*try
             {
                 if (son == null)
                     throw new FileNotFoundException();
@@ -190,7 +190,11 @@ namespace histograms
             catch (Exception ex)
             {
                 MessageBox.Show($"Виникла непедбачувана ситуація:\n{ex.Message}", "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }*/
+            Create(son);
+
+            if (click_count == 1)
+                click_count = 0;
         }
         private void openFile_Click(object sender, EventArgs e)
         {
@@ -385,14 +389,23 @@ namespace histograms
             double max = sample.Max();
             double h = Math.Round((max - min) / classes, 4);
 
+<<<<<<< HEAD
             BasicStatistics features = new BasicStatistics(classes);
+=======
+
+            Features features = new Features(classes);
+>>>>>>> 9db09e445d4d96d401da94363a8e690e5b39d2bf
             List<List<double>> intervals = features.GetIntervals(min, max, h);
             List<double> upper_interval = intervals[0];
             List<double> lower_interval = intervals[1];
 
             variation[] variants = GetVarianta(upper_interval, lower_interval, sample);
             selective_avg = features.GetSelectiveAvg(variants);
+<<<<<<< HEAD
             sigma = Math.Sqrt(features.GetDispersion(variants, h, sample));
+=======
+            sigma = features.GetSigma(variants, h, sample);
+>>>>>>> 9db09e445d4d96d401da94363a8e690e5b39d2bf
 
             // підрахунок цих трьох значень тісно зв'язаний,
             // тому раціональніше вивести список який містить всі значення.
@@ -401,10 +414,16 @@ namespace histograms
             excess = Excess_asymmetry[1];
             counter_excess = Excess_asymmetry[2];
 
+<<<<<<< HEAD
             pirson = (sigma / avg) * 100;
             
             double walsh_median = features.GetWalshMedian(sample, N);
             double truncated_mean = features.GetTruncatedMean(koeficcient, N, sample);
+=======
+            pirson = (sigma / avg) * 100;            
+            decimal walsh_median = features.GetWalshMedian(sample, N);
+            decimal truncated_mean = features.GetTruncatedMean(koeficcient, N, sample);
+>>>>>>> 9db09e445d4d96d401da94363a8e690e5b39d2bf
 
             List<double> freqs = Empiric.GetFreqs(variants);
             DrawChart(variants, lower_interval);
