@@ -29,13 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea16 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series21 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series22 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea18 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series23 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series24 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.column_bar = new System.Windows.Forms.TrackBar();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabControl2 = new System.Windows.Forms.TabControl();
@@ -70,6 +72,15 @@
             this.toLog = new System.Windows.Forms.ToolStripMenuItem();
             this.toNormal = new System.Windows.Forms.ToolStripMenuItem();
             this.createFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.розподілиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exp_distr = new System.Windows.Forms.ToolStripMenuItem();
+            this.norm_distr = new System.Windows.Forms.ToolStripMenuItem();
+            this.weibull_distr = new System.Windows.Forms.ToolStripMenuItem();
+            this.flat_distr = new System.Windows.Forms.ToolStripMenuItem();
+            this.arcsin_distr = new System.Windows.Forms.ToolStripMenuItem();
+            this.additional_buttons = new System.Windows.Forms.ToolStripMenuItem();
+            this.create_exponential = new System.Windows.Forms.ToolStripMenuItem();
+            this.create_weibull = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.column_bar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.tabControl2.SuspendLayout();
@@ -96,18 +107,24 @@
             // 
             // chart
             // 
-            chartArea16.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea16);
+            chartArea4.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea4);
             this.chart.IsSoftShadows = false;
             resources.ApplyResources(this.chart, "chart");
             this.chart.Name = "chart";
             this.chart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
-            series21.BorderColor = System.Drawing.Color.Black;
-            series21.ChartArea = "ChartArea1";
-            series21.Color = System.Drawing.SystemColors.InactiveCaption;
-            series21.CustomProperties = "PointWidth=1";
-            series21.Name = "Series1";
-            this.chart.Series.Add(series21);
+            series7.BorderColor = System.Drawing.Color.Black;
+            series7.ChartArea = "ChartArea1";
+            series7.Color = System.Drawing.SystemColors.InactiveCaption;
+            series7.CustomProperties = "PointWidth=1";
+            series7.Name = "Series1";
+            series8.BorderWidth = 5;
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series8.Name = "Series2";
+            this.chart.Series.Add(series7);
+            this.chart.Series.Add(series8);
+            this.chart.TextAntiAliasingQuality = System.Windows.Forms.DataVisualization.Charting.TextAntiAliasingQuality.SystemDefault;
             this.chart.Click += new System.EventHandler(this.chart_Click);
             // 
             // tabControl2
@@ -145,34 +162,40 @@
             // 
             // chart1
             // 
-            chartArea17.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea17);
+            chartArea5.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea5);
             resources.ApplyResources(this.chart1, "chart1");
             this.chart1.Name = "chart1";
-            series22.BorderColor = System.Drawing.Color.Black;
-            series22.BorderWidth = 2;
-            series22.ChartArea = "ChartArea1";
-            series22.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
-            series22.Color = System.Drawing.Color.Maroon;
-            series22.Name = "Series1";
-            this.chart1.Series.Add(series22);
+            series9.BorderColor = System.Drawing.Color.Black;
+            series9.BorderWidth = 2;
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
+            series9.Color = System.Drawing.Color.Maroon;
+            series9.Name = "Series1";
+            series10.BorderWidth = 3;
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series10.Name = "Series2";
+            this.chart1.Series.Add(series9);
+            this.chart1.Series.Add(series10);
             // 
             // prob_grid
             // 
-            chartArea18.Name = "ChartArea1";
-            this.prob_grid.ChartAreas.Add(chartArea18);
+            chartArea6.Name = "ChartArea1";
+            this.prob_grid.ChartAreas.Add(chartArea6);
             resources.ApplyResources(this.prob_grid, "prob_grid");
             this.prob_grid.Name = "prob_grid";
-            series23.ChartArea = "ChartArea1";
-            series23.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series23.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            series23.Name = "Series1";
-            series24.ChartArea = "ChartArea1";
-            series24.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series24.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            series24.Name = "Series2";
-            this.prob_grid.Series.Add(series23);
-            this.prob_grid.Series.Add(series24);
+            series11.BorderWidth = 3;
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series11.Color = System.Drawing.Color.Chartreuse;
+            series11.Name = "Series1";
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series12.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            series12.Name = "Series2";
+            this.prob_grid.Series.Add(series11);
+            this.prob_grid.Series.Add(series12);
             // 
             // tabControl1
             // 
@@ -311,7 +334,9 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.file_menu,
             this.transformation_menu,
-            this.createFile});
+            this.createFile,
+            this.розподілиToolStripMenuItem,
+            this.additional_buttons});
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
@@ -360,6 +385,67 @@
             this.createFile.Name = "createFile";
             resources.ApplyResources(this.createFile, "createFile");
             this.createFile.Click += new System.EventHandler(this.createFile_Click);
+            // 
+            // розподілиToolStripMenuItem
+            // 
+            this.розподілиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exp_distr,
+            this.norm_distr,
+            this.weibull_distr,
+            this.flat_distr,
+            this.arcsin_distr});
+            this.розподілиToolStripMenuItem.Name = "розподілиToolStripMenuItem";
+            resources.ApplyResources(this.розподілиToolStripMenuItem, "розподілиToolStripMenuItem");
+            // 
+            // exp_distr
+            // 
+            this.exp_distr.Name = "exp_distr";
+            resources.ApplyResources(this.exp_distr, "exp_distr");
+            this.exp_distr.Click += new System.EventHandler(this.exp_distr_Click);
+            // 
+            // norm_distr
+            // 
+            this.norm_distr.Name = "norm_distr";
+            resources.ApplyResources(this.norm_distr, "norm_distr");
+            this.norm_distr.Click += new System.EventHandler(this.norm_distr_Click);
+            // 
+            // weibull_distr
+            // 
+            this.weibull_distr.Name = "weibull_distr";
+            resources.ApplyResources(this.weibull_distr, "weibull_distr");
+            this.weibull_distr.Click += new System.EventHandler(this.weibull_distr_Click);
+            // 
+            // flat_distr
+            // 
+            this.flat_distr.Name = "flat_distr";
+            resources.ApplyResources(this.flat_distr, "flat_distr");
+            this.flat_distr.Click += new System.EventHandler(this.flat_distr_Click);
+            // 
+            // arcsin_distr
+            // 
+            this.arcsin_distr.Name = "arcsin_distr";
+            resources.ApplyResources(this.arcsin_distr, "arcsin_distr");
+            this.arcsin_distr.Click += new System.EventHandler(this.arcsin_distr_Click);
+            // 
+            // additional_buttons
+            // 
+            this.additional_buttons.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.create_exponential,
+            this.create_weibull});
+            this.additional_buttons.Name = "additional_buttons";
+            resources.ApplyResources(this.additional_buttons, "additional_buttons");
+            // 
+            // create_exponential
+            // 
+            this.create_exponential.Name = "create_exponential";
+            resources.ApplyResources(this.create_exponential, "create_exponential");
+            this.create_exponential.Click += new System.EventHandler(this.create_exponential_Click);
+            // 
+            // create_weibull
+            // 
+            this.create_weibull.Name = "create_weibull";
+            resources.ApplyResources(this.create_weibull, "create_weibull");
+            this.create_weibull.Click += new System.EventHandler(this.create_weibull_Click);
             // 
             // Form1
             // 
@@ -432,6 +518,15 @@
         private System.Windows.Forms.ToolStripMenuItem toLog;        
         private System.Windows.Forms.ToolStripMenuItem toNormal;
         private System.Windows.Forms.ToolStripMenuItem createFile;
+        private System.Windows.Forms.ToolStripMenuItem розподілиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exp_distr;
+        private System.Windows.Forms.ToolStripMenuItem norm_distr;
+        private System.Windows.Forms.ToolStripMenuItem weibull_distr;
+        private System.Windows.Forms.ToolStripMenuItem flat_distr;
+        private System.Windows.Forms.ToolStripMenuItem arcsin_distr;
+        private System.Windows.Forms.ToolStripMenuItem additional_buttons;
+        private System.Windows.Forms.ToolStripMenuItem create_exponential;
+        private System.Windows.Forms.ToolStripMenuItem create_weibull;
     }
 }
 

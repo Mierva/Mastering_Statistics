@@ -168,51 +168,6 @@
   <data name="&gt;&gt;chart.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;tabPage3.Name" xml:space="preserve">
-    <value>tabPage3</value>
-  </data>
-  <data name="&gt;&gt;tabPage3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage3.Parent" xml:space="preserve">
-    <value>tabControl2</value>
-  </data>
-  <data name="&gt;&gt;tabPage3.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tabPage4.Name" xml:space="preserve">
-    <value>tabPage4</value>
-  </data>
-  <data name="&gt;&gt;tabPage4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage4.Parent" xml:space="preserve">
-    <value>tabControl2</value>
-  </data>
-  <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tabControl2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 41</value>
-  </data>
-  <data name="tabControl2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1382, 469</value>
-  </data>
-  <data name="tabControl2.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;tabControl2.Name" xml:space="preserve">
-    <value>tabControl2</value>
-  </data>
-  <data name="&gt;&gt;tabControl2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabControl2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tabControl2.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="tabPage3.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 25</value>
   </data>
@@ -302,6 +257,27 @@
   </data>
   <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="tabControl2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 41</value>
+  </data>
+  <data name="tabControl2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1382, 469</value>
+  </data>
+  <data name="tabControl2.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;tabControl2.Name" xml:space="preserve">
+    <value>tabControl2</value>
+  </data>
+  <data name="&gt;&gt;tabControl2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControl2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tabControl2.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="trackBar1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -505,7 +481,7 @@
     <value>6</value>
   </data>
   <data name="statistics.Width" type="System.Int32, mscorlib">
-    <value>113</value>
+    <value>112</value>
   </data>
   <metadata name="values.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -515,9 +491,6 @@
   </data>
   <data name="values.MinimumWidth" type="System.Int32, mscorlib">
     <value>6</value>
-  </data>
-  <data name="values.Width" type="System.Int32, mscorlib">
-    <value>102</value>
   </data>
   <metadata name="trusted.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -529,7 +502,7 @@
     <value>6</value>
   </data>
   <data name="trusted.Width" type="System.Int32, mscorlib">
-    <value>132</value>
+    <value>130</value>
   </data>
   <metadata name="sqrd.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -640,7 +613,7 @@
     <value>6</value>
   </data>
   <data name="Column4.Width" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>43</value>
   </data>
   <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -706,7 +679,7 @@
     <value>1</value>
   </data>
   <data name="probability_field.Location" type="System.Drawing.Point, System.Drawing">
-    <value>353, 6</value>
+    <value>626, 6</value>
   </data>
   <data name="probability_field.Size" type="System.Drawing.Size, System.Drawing">
     <value>42, 22</value>
@@ -733,7 +706,7 @@
     <value>Microsoft Sans Serif, 10pt</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>320, 6</value>
+    <value>593, 6</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 20</value>
@@ -757,7 +730,7 @@
     <value>5</value>
   </data>
   <data name="a_value.Location" type="System.Drawing.Point, System.Drawing">
-    <value>451, 6</value>
+    <value>724, 6</value>
   </data>
   <data name="a_value.Size" type="System.Drawing.Size, System.Drawing">
     <value>42, 22</value>
@@ -787,7 +760,7 @@
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>416, 6</value>
+    <value>689, 6</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>38, 20</value>
@@ -844,13 +817,13 @@
     <value>Файл</value>
   </data>
   <data name="openFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
+    <value>157, 26</value>
   </data>
   <data name="openFile.Text" xml:space="preserve">
     <value>Відкрити</value>
   </data>
   <data name="clearFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
+    <value>157, 26</value>
   </data>
   <data name="clearFile.Text" xml:space="preserve">
     <value>Очистити</value>
@@ -878,6 +851,60 @@
   </data>
   <data name="createFile.Text" xml:space="preserve">
     <value>Побудувати</value>
+  </data>
+  <data name="розподілиToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 24</value>
+  </data>
+  <data name="розподілиToolStripMenuItem.Text" xml:space="preserve">
+    <value>Розподіли</value>
+  </data>
+  <data name="exp_distr.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 26</value>
+  </data>
+  <data name="exp_distr.Text" xml:space="preserve">
+    <value>Експоненційний</value>
+  </data>
+  <data name="norm_distr.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 26</value>
+  </data>
+  <data name="norm_distr.Text" xml:space="preserve">
+    <value>Нормальний</value>
+  </data>
+  <data name="weibull_distr.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 26</value>
+  </data>
+  <data name="weibull_distr.Text" xml:space="preserve">
+    <value>Вейбула</value>
+  </data>
+  <data name="flat_distr.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 26</value>
+  </data>
+  <data name="flat_distr.Text" xml:space="preserve">
+    <value>Рівномірний</value>
+  </data>
+  <data name="arcsin_distr.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 26</value>
+  </data>
+  <data name="arcsin_distr.Text" xml:space="preserve">
+    <value>Арксинус</value>
+  </data>
+  <data name="additional_buttons.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 24</value>
+  </data>
+  <data name="additional_buttons.Text" xml:space="preserve">
+    <value>Створити вибірку</value>
+  </data>
+  <data name="create_exponential.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 26</value>
+  </data>
+  <data name="create_exponential.Text" xml:space="preserve">
+    <value>Експоненціальна</value>
+  </data>
+  <data name="create_weibull.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 26</value>
+  </data>
+  <data name="create_weibull.Text" xml:space="preserve">
+    <value>Вейбула</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -979,6 +1006,60 @@
     <value>createFile</value>
   </data>
   <data name="&gt;&gt;createFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;розподілиToolStripMenuItem.Name" xml:space="preserve">
+    <value>розподілиToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;розподілиToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;exp_distr.Name" xml:space="preserve">
+    <value>exp_distr</value>
+  </data>
+  <data name="&gt;&gt;exp_distr.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;norm_distr.Name" xml:space="preserve">
+    <value>norm_distr</value>
+  </data>
+  <data name="&gt;&gt;norm_distr.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;weibull_distr.Name" xml:space="preserve">
+    <value>weibull_distr</value>
+  </data>
+  <data name="&gt;&gt;weibull_distr.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flat_distr.Name" xml:space="preserve">
+    <value>flat_distr</value>
+  </data>
+  <data name="&gt;&gt;flat_distr.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;arcsin_distr.Name" xml:space="preserve">
+    <value>arcsin_distr</value>
+  </data>
+  <data name="&gt;&gt;arcsin_distr.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;additional_buttons.Name" xml:space="preserve">
+    <value>additional_buttons</value>
+  </data>
+  <data name="&gt;&gt;additional_buttons.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;create_exponential.Name" xml:space="preserve">
+    <value>create_exponential</value>
+  </data>
+  <data name="&gt;&gt;create_exponential.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;create_weibull.Name" xml:space="preserve">
+    <value>create_weibull</value>
+  </data>
+  <data name="&gt;&gt;create_weibull.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

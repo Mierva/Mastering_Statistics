@@ -1,0 +1,74 @@
+D:\Projects\histograms\histograms\bin\Debug\histograms.exe.config
+D:\Projects\histograms\histograms\bin\Debug\histograms.exe
+D:\Projects\histograms\histograms\bin\Debug\histograms.pdb
+D:\Projects\histograms\histograms\bin\Debug\LiveCharts.dll
+D:\Projects\histograms\histograms\bin\Debug\LiveCharts.WinForms.dll
+D:\Projects\histograms\histograms\bin\Debug\LiveCharts.Wpf.dll
+D:\Projects\histograms\histograms\bin\Debug\LiveCharts.pdb
+D:\Projects\histograms\histograms\bin\Debug\LiveCharts.xml
+D:\Projects\histograms\histograms\bin\Debug\LiveCharts.WinForms.pdb
+D:\Projects\histograms\histograms\bin\Debug\LiveCharts.WinForms.xml
+D:\Projects\histograms\histograms\bin\Debug\LiveCharts.Wpf.pdb
+D:\Projects\histograms\histograms\bin\Debug\LiveCharts.Wpf.xml
+D:\Projects\histograms\histograms\obj\Debug\histograms.Properties.Resources.resources
+D:\Projects\histograms\histograms\obj\Debug\histograms.csproj.GenerateResource.cache
+D:\Projects\histograms\histograms\obj\Debug\histograms.csproj.CoreCompileInputs.cache
+D:\Projects\histograms\histograms\obj\Debug\histograms.csproj.CopyComplete
+D:\Projects\histograms\histograms\obj\Debug\histograms.exe
+D:\Projects\histograms\histograms\obj\Debug\histograms.pdb
+D:\Projects\histograms\histograms\obj\Debug\histograms.Form1.resources
+D:\Projects\histograms\histograms\bin\Debug\Cyotek.Windows.Forms.ColorPicker.dll
+D:\Projects\histograms\histograms\bin\Debug\System.Windows.Forms.DataVisualization.MSChartExtension.dll
+D:\Projects\histograms\histograms\bin\Debug\Cyotek.Windows.Forms.ColorPicker.xml
+D:\Projects\histograms\histograms\bin\Debug\System.Windows.Forms.DataVisualization.MSChartExtension.xml
+D:\Projects\histograms\histograms\bin\Debug\Accord.dll
+D:\Projects\histograms\histograms\bin\Debug\Accord.Math.Core.dll
+D:\Projects\histograms\histograms\bin\Debug\Accord.Math.dll
+D:\Projects\histograms\histograms\bin\Debug\Accord.Statistics.dll
+D:\Projects\histograms\histograms\bin\Debug\Meta.Numerics.dll
+D:\Projects\histograms\histograms\bin\Debug\Accord.xml
+D:\Projects\histograms\histograms\bin\Debug\Accord.Math.xml
+D:\Projects\histograms\histograms\bin\Debug\Accord.Math.Core.xml
+D:\Projects\histograms\histograms\bin\Debug\Accord.Statistics.xml
+D:\Projects\histograms\histograms\bin\Debug\Meta.Numerics.pdb
+D:\Projects\histograms\histograms\bin\Debug\Meta.Numerics.xml
+D:\Projects\histograms\histograms\bin\Debug\Accord.dll.config
+D:\Projects\histograms\histograms\obj\Debug\histograms.csproj.AssemblyReference.cache
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\Accord.dll.config
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\histograms.exe.config
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\histograms.exe
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\histograms.pdb
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\Accord.dll
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\Accord.Math.Core.dll
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\Accord.Math.dll
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\Accord.Statistics.dll
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\Cyotek.Windows.Forms.ColorPicker.dll
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\LiveCharts.dll
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\LiveCharts.WinForms.dll
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\Meta.Numerics.dll
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\System.Windows.Forms.DataVisualization.MSChartExtension.dll
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\Accord.xml
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\Accord.Math.xml
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\Accord.Math.Core.xml
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\Accord.Statistics.xml
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\Cyotek.Windows.Forms.ColorPicker.xml
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\LiveCharts.pdb
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\LiveCharts.xml
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\LiveCharts.WinForms.pdb
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\LiveCharts.WinForms.xml
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\Meta.Numerics.pdb
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\Meta.Numerics.xml
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\bin\Debug\System.Windows.Forms.DataVisualization.MSChartExtension.xml
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\obj\Debug\histograms.csproj.AssemblyReference.cache
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\obj\Debug\histograms.csproj.SuggestedBindingRedirects.cache
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\obj\Debug\histograms.Form1.resources
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\obj\Debug\histograms.Properties.Resources.resources
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\obj\Debug\histograms.csproj.GenerateResource.cache
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\obj\Debug\histograms.csproj.CoreCompileInputs.cache
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\obj\Debug\histograms.csproj.CopyComplete
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\obj\Debug\histograms.exe
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\obj\Debug\histograms.pdb
+C:\Users\homou\Desktop\New folder\again\histograms\histograms\obj\Debug\histograms.ReverseFunc.resources

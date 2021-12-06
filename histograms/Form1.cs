@@ -13,8 +13,9 @@ using System.Windows.Forms.DataVisualization.Charting;
 namespace histograms
 {    
     public partial class Form1 : Form
-    {
+    {      
         double probability = 0.95;
+        
         double koeficcient = 0.5;
         double Probability
         {
@@ -41,12 +42,11 @@ namespace histograms
             }
         }
 
-        public static int mark      = 0;
-        public static int classes   = 0;
-        public static double sigma  = 0;
-        public static double avg    = 0;
-        public static double pirson = 0;
-
+        private static int mark      = 0;
+        private static int classes   = 0;
+        private static double sigma  = 0;
+        private static double avg    = 0;
+        private static double pirson = 0;
 
         List<string> father, son, cleaned_data;        
         List<double> temple;       
@@ -59,6 +59,114 @@ namespace histograms
             InitializeComponent();
         }
         #region Buttons
+
+        #region Interface
+        private void create_exponential_Click(object sender, EventArgs e)
+        {
+            new ReverseFunc("exp").Show();
+            /*
+            if (sample_size.Visible == false)
+            {
+                spanel1.Visible = true;
+                slabel4.Visible = true;
+                slabel3.Visible = true;
+                slabel5.Visible = true;
+                sample_lambda.Visible = true;
+                sample_size.Visible = true;
+
+                return;
+            }
+
+           
+            int N = Convert.ToInt32(sample_size.Text);
+            double lambda = Convert.ToDouble(sample_lambda.Text.Replace(".",","));
+            Sample random_sample = new Sample(N,lambda);                
+
+            List<double> sample = random_sample.MakeSampleExp();
+
+            random_sample.SaveSample(sample);
+
+            List<string> str_sample = ToString(sample);
+            try
+            {
+                if (str_sample == null)
+                    throw new FileNotFoundException();
+                else if (str_sample.Count == 1)
+                    throw new WarningException();
+                else
+                {
+                    AnalyzeData(str_sample);
+                    father = str_sample;
+                    son = str_sample;
+
+                    if (click_count == 1)
+                        click_count = 0;
+                }
+            }
+            catch (WarningException ex)
+            {
+                MessageBox.Show($"Замала кількість даних.", "Попередження!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Виникла непедбачувана ситуація:\n{ex.Message}", "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }*/
+        }
+        private void create_weibull_Click(object sender, EventArgs e)
+        {
+            new ReverseFunc("weib").Show();
+
+            /*
+            if (sample_size.Visible == false)
+            {
+                spanel1.Visible = true;
+                slabel4.Visible = true;
+                slabel4.Text = "α = ";
+                slabel6.Visible = true;
+                slabel3.Visible = true;
+                slabel5.Visible = true;
+                sample_lambda.Visible = true;
+                sample_size.Visible = true;
+                sample_beta.Visible = true;
+
+                return;
+            }          
+
+
+            int N = Convert.ToInt32(sample_size.Text);
+            double alpha = Convert.ToDouble(sample_lambda.Text.Replace(".", ","));
+            double beta = Convert.ToDouble(sample_beta.Text.Replace(".", ","));
+
+            Sample random_sample = new Sample(N, alpha,beta);
+
+            List<double> sample = random_sample.MakeSampleWeibull();
+
+            random_sample.SaveSample(sample);
+
+            List<string> str_sample = ToString(sample);
+            try
+            {
+                if (str_sample == null)
+                    throw new FileNotFoundException();
+                else if (str_sample.Count == 1)
+                    throw new WarningException();
+                else
+                {
+                    AnalyzeData(str_sample);
+                    father = str_sample;
+                    son = str_sample;
+
+                    if (click_count == 1)
+                        click_count = 0;
+                }
+            }
+            catch (WarningException ex)
+            {
+                MessageBox.Show($"Замала кількість даних.", "Попередження!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+           */
+        }
+
         private void createFile_Click(object sender, EventArgs e)
         {
             try
@@ -66,16 +174,16 @@ namespace histograms
                 if (son == null)
                     throw new FileNotFoundException();
                 else if (son.Count == 1)
-                    throw new WarningException();            
+                    throw new WarningException();
                 else
                 {
-                    Create(son);
+                    AnalyzeData(son);
 
                     if (click_count == 1)
                         click_count = 0;
                 }
             }
-            catch (WarningException ex)
+            catch (WarningException дex)
             {
                 MessageBox.Show($"Замала кількість даних.", "Попередження!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -92,44 +200,82 @@ namespace histograms
         private void clearFile_Click(object sender, EventArgs e)
         {
             Clear();
+            father = null;
+            son = null;
+            cleaned_data = null;
         }
         private void toLog_Click(object sender, EventArgs e)
         {
-            click_count = 0;
-            List<double> sample = ListConv(son);
-            List<double> brand_new = new List<double>();
-            double new_x = 0;
-
-            double min = 0;
-            for (int i = 0; i < sample.Count; i++)
+            //TODO: fix toLog algoritm
+            //changing data using log(e) doesn't work for some cases, what's the case?
+            //minimum finding?
+            try
             {
-                if (sample[i] < 0 && min > sample[i])
-                    min = sample[i];
-            }
+                if (son == null)
+                    throw new FileNotFoundException();
+                else if (son.Count == 1)
+                    throw new WarningException();
 
-            for (int i = 0; i < sample.Count; i++)
+                click_count = 0;
+                List<double> sample = ListConv(son);
+                List<double> brand_new = new List<double>();
+                double new_x = 0;
+
+                double min = 0;
+                for (int i = 0; i < sample.Count; i++)
+                {
+                    if (sample[i] < 0 && min > sample[i])
+                        min = sample[i];
+                }
+
+                for (int i = 0; i < sample.Count; i++)
+                {
+                    new_x = sample[i] + Math.Abs(min) + probability;
+                    brand_new.Add(Math.Round(Math.Log10(new_x), 4));
+                }
+
+                List<string> transfer = ToString(brand_new);
+                AnalyzeData(transfer);
+            }
+            catch (WarningException ex)
             {
-                new_x = sample[i] + Math.Abs(min) + probability;
-                brand_new.Add(Math.Round(Math.Log10(new_x), 4));
+                MessageBox.Show($"Замала кількість даних.", "Попередження!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-            List<string> transfer = ToString(brand_new);
-            Create(transfer);
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Виникла непедбачувана ситуація:\n{ex.Message}", "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void toNormal_Click(object sender, EventArgs e)
         {
             if (click_count != 0) return;
             else
             {
-                click_count = 1;
-                List<double> sample = ListConv(son);
-                List<double> brand_new = new List<double>();
+                try
+                {
+                    if (son == null)
+                        throw new FileNotFoundException();
+                    else if (son.Count == 1)
+                        throw new WarningException();
 
-                for (int i = 0; i < sample.Count; i++)
-                    brand_new.Add((sample[i] - avg) / sigma);
+                    click_count = 1;
+                    List<double> sample = ListConv(son);
+                    List<double> brand_new = new List<double>();
 
-                List<string> transfer = ToString(brand_new);
-                Create(transfer);
+                    for (int i = 0; i < sample.Count; i++)
+                        brand_new.Add((sample[i] - avg) / sigma);
+
+                    List<string> transfer = ToString(brand_new);
+                    AnalyzeData(transfer);
+                }
+                catch (WarningException ex)
+                {
+                    MessageBox.Show($"Замала кількість даних.", "Попередження!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Виникла непедбачувана ситуація:\n{ex.Message}", "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private void chart_Click(object sender, EventArgs e)
@@ -141,22 +287,21 @@ namespace histograms
                 List<double> cleaned = Anomaly_review(temple, excess, selective_avg, asymmetry, sigma);
                 cleaned_data = ToString(cleaned);
                 son = cleaned_data;
-                Create(cleaned_data);
+                AnalyzeData(cleaned_data);
             }
             else if (result == DialogResult.Cancel)
             {
                 son = father;
-                Create(son);
-            }                  
+                AnalyzeData(son);
+            }
         }
-
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             classes = trackBar1.Value;
             column_bar.Value = trackBar1.Value;
             try
             {
-                Create(son);
+                AnalyzeData(son);
             }
             catch
             {
@@ -165,15 +310,19 @@ namespace histograms
         }
         private void column_bar_Scroll(object sender, EventArgs e)
         {
-            classes = column_bar.Value;
-            trackBar1.Value = column_bar.Value;
             try
             {
-                List<string> list = son;
-                if (list != null)
-                    Create(list);
-                else
-                    throw new Exception();
+                classes = column_bar.Value;
+                trackBar1.Value = column_bar.Value;
+
+                if (son != null)
+                {
+                    List<string> list = son;
+                    if (list != null)
+                        AnalyzeData(list);
+                    else
+                        throw new Exception();
+                }
             }
             catch
             {
@@ -181,10 +330,37 @@ namespace histograms
             }
         }
         #endregion
+
+        #region Distributions
+        private void exp_distr_Click(object sender, EventArgs e)
+        {
+            Exponential(temple, avg, classes);
+        }
+        private void norm_distr_Click(object sender, EventArgs e)
+        {
+            Normal(temple, avg, classes);
+        }
+        private void weibull_distr_Click(object sender, EventArgs e)
+        {
+            Weibull(temple, avg, classes);
+        }
+        private void flat_distr_Click(object sender, EventArgs e)
+        {
+            Flat(temple, avg, classes);
+        }
+        private void arcsin_distr_Click(object sender, EventArgs e)
+        {
+            Arcsin(temple, avg, classes);
+        }
+        #endregion
+
+        #endregion
+
         #region Operations
 
         #region Main
-        public void Create(List<string> local_list)
+
+        public void AnalyzeData(List<string> local_list)
         {
             Clear();
             double temp;
@@ -203,52 +379,50 @@ namespace histograms
             foreach (var i in sample)
                 sum += i;
 
-            avg = Math.Round(sum / N, 4);
+            avg = sum / N;
+
             double min = sample.Min();
             double max = sample.Max();
             double h = Math.Round((max - min) / classes, 4);
 
-            List<List<double>> intervals = Features.GetIntervals(min, max, h);
+            BasicStatistics features = new BasicStatistics(classes);
+            List<List<double>> intervals = features.GetIntervals(min, max, h);
             List<double> upper_interval = intervals[0];
             List<double> lower_interval = intervals[1];
 
             variation[] variants = GetVarianta(upper_interval, lower_interval, sample);
-            selective_avg = Features.GetSelectiveAvg(variants);
-            sigma = Features.GetSigma(variants, h, sample);
+            selective_avg = features.GetSelectiveAvg(variants);
+            sigma = Math.Sqrt(features.GetDispersion(variants, h, sample));
 
             // підрахунок цих трьох значень тісно зв'язаний,
             // тому раціональніше вивести список який містить всі значення.
-            List<double> Excess_asymmetry = Features.GetEx_Asym_CEx(sample, variants, sigma, selective_avg);
+            List<double> Excess_asymmetry = features.GetEx_Asym_CEx(sample, variants, sigma, selective_avg);
             asymmetry = Excess_asymmetry[0];
             excess = Excess_asymmetry[1];
             counter_excess = Excess_asymmetry[2];
 
             pirson = (sigma / avg) * 100;
-            double selective_median = Features.GetMedian(sample);
-            decimal walsh_median = Features.GetWalshMedian(sample, N);
-            decimal truncated_mean = Features.GetTruncatedMean(koeficcient, N, sample);
+            
+            double walsh_median = features.GetWalshMedian(sample, N);
+            double truncated_mean = features.GetTruncatedMean(koeficcient, N, sample);
 
             List<double> freqs = Empiric.GetFreqs(variants);
             DrawChart(variants, lower_interval);
             DrawEmpiricFunction(variants, lower_interval, freqs);
             DrawProbabilityGrid(variants, lower_interval, freqs, sample);
 
+
             List<List<double>> confidence_intervals = AddConfidenceIntervals(N,sample);
 
-            ShowStatistics(min, max, pirson, walsh_median, truncated_mean, confidence_intervals);
+            ShowStatistics(min, max, pirson, walsh_median, truncated_mean, confidence_intervals, sample,N);            
 
             for (int i = 0; i < variants.Length; i++)
                 variationGrid.Rows.Add(i, variants[i].value, variants[i].reps, variants[i].freq);
-
-            variationGrid.Rows.Add(0.05, chart.DataManipulator.Statistics.NormalDistribution(0.95));
-            variationGrid.Rows.Add(0.05, chart.DataManipulator.Statistics.InverseNormalDistribution(0.95));
-            variationGrid.Rows.Add(0.05, chart.DataManipulator.Statistics.GammaFunction(0.95));
         }
 
         private List<List<double>> AddConfidenceIntervals(int N, List<double> sample)
         {
-            Squared data = new Squared(N,sample,avg);            
-
+            SquaredData data = new SquaredData(N,sample,avg);
             List<List<double>> ints = new List<List<double>>();
             ints.Add(GetConfidenceInterval(avg, data.GetMean(sigma), N, probability));
             ints.Add(GetConfidenceInterval(sigma, data.GetSigma(sigma), N, probability));            
@@ -260,58 +434,132 @@ namespace histograms
 
             return ints;
         }
-        private void ShowStatistics(double min, double max, double pirson, decimal walsh_median, decimal truncated_mean, List<List<double>> ints)
-        {            
+        private void ShowStatistics(double min, double max, double pirson, double walsh_median, double truncated_mean, List<List<double>> ints, List<double> sample, int N)
+        {
+            SquaredData data = new SquaredData(N, sample, avg);
+            
             result.Rows.Add("Класи", classes);
-            result.Rows.Add("Сер.ариф", Math.Round(avg, 4),
-                Math.Round(ints[0][0], 4) + " < " + Math.Round(ints[0][1], 4) + " < " + Math.Round(ints[0][2], 4));
+            result.Rows.Add("Сер.ариф", 
+                Math.Round(avg, 4),
+                Math.Round(ints[0][0], 4) + " < " + Math.Round(ints[0][1], 4) + " < " + Math.Round(ints[0][2], 4), 
+                Math.Round(data.GetMean(sigma),4));
             result.Rows.Add("Мінімальне", Math.Round(min, 4));
             result.Rows.Add("Максимальне", Math.Round(max, 4));
-            result.Rows.Add("Сер.кв.відхилення", Math.Round(sigma, 4),
-                Math.Round(ints[1][0], 4) + " < " + Math.Round(ints[1][1], 4) + " < " + Math.Round(ints[1][2], 4));
-            result.Rows.Add("Коеф.асиметрії", Math.Round(asymmetry, 4),
-                Math.Round(ints[2][0], 4) + " < " + Math.Round(ints[2][1], 4) + " < " + Math.Round(ints[2][2], 4));
-            result.Rows.Add("Ексцес", Math.Round(excess, 4),
-                Math.Round(ints[3][0], 4) + " < " + Math.Round(ints[3][1], 4) + " < " + Math.Round(ints[3][2], 4));
-            result.Rows.Add("Контрексцес", Math.Round(counter_excess, 4),
-                Math.Round(ints[4][0], 4) + " < " + Math.Round(ints[4][1], 4) + " < " + Math.Round(ints[4][2], 4));
-            result.Rows.Add("Коеф.Пірсона", Math.Round(pirson, 4),
-                Math.Round(ints[5][0], 4) + " < " + Math.Round(ints[5][1], 4) + " < " + Math.Round(ints[5][2], 4));
-            result.Rows.Add("Вибіркова медіана", Math.Round(selective_avg, 4),
-                Math.Round(ints[6][0], 4) + " < " + Math.Round(ints[6][1], 4) + " < " + Math.Round(ints[6][2], 4));
+            result.Rows.Add("Сер.кв.відхилення", 
+                Math.Round(sigma, 4),
+                Math.Round(ints[1][0], 4) + " < " + Math.Round(ints[1][1], 4) + " < " + Math.Round(ints[1][2], 4), 
+                Math.Round(data.GetSigma(sigma),4));
+            result.Rows.Add("Коеф.асиметрії", 
+                Math.Round(asymmetry, 4),
+                Math.Round(ints[2][0], 4) + " < " + Math.Round(ints[2][1], 4) + " < " + Math.Round(ints[2][2], 4),
+                Math.Round(data.GetAssymetry(),4));
+            result.Rows.Add("Ексцес", 
+                Math.Round(excess, 4),
+                Math.Round(ints[3][0], 4) + " < " + Math.Round(ints[3][1], 4) + " < " + Math.Round(ints[3][2], 4), 
+                Math.Round(data.GetExcess(),4));
+            result.Rows.Add("Контрексцес", 
+                Math.Round(counter_excess, 4),
+                Math.Round(ints[4][0], 4) + " < " + Math.Round(ints[4][1], 4) + " < " + Math.Round(ints[4][2], 4),
+                Math.Round(data.GetCounterExcess(excess),4));
+            result.Rows.Add("Коеф.Пірсона", 
+                Math.Round(pirson, 4),
+                Math.Round(ints[5][0], 4) + " < " + Math.Round(ints[5][1], 4) + " < " + Math.Round(ints[5][2], 4),
+                Math.Round(data.GetPirson(pirson),4));
+            result.Rows.Add("Вибіркове середнє", 
+                Math.Round(selective_avg, 4),
+                Math.Round(ints[6][0], 4) + " < " + Math.Round(ints[6][1], 4) + " < " + Math.Round(ints[6][2], 4),
+                Math.Round(data.GetMean(selective_avg),4));
             result.Rows.Add("Медіана Уолша", Math.Round(walsh_median, 4));
             result.Rows.Add("Усічене середнє", Math.Round(truncated_mean, 4));
         }
-
         public List<string> ReadFile()
         {
-            string line = "";
-            string path = "";
+            string line = "";           
             List<string> raw_data = new List<string>();
 
             OpenFileDialog file_properties = new OpenFileDialog();
-            file_properties.InitialDirectory = "c:\\Users\\homou\\Desktop\\data";
+            file_properties.InitialDirectory = @"D:\NAU\Statistics\histograms\data";
             file_properties.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             file_properties.FilterIndex = 2;
             file_properties.RestoreDirectory = true;
 
+
             if (file_properties.ShowDialog() == DialogResult.OK)
             {
-                path = file_properties.FileName;
-                var fileStream = file_properties.OpenFile();
-                StreamReader txt = new StreamReader(fileStream);
-                for (int c = 0; !txt.EndOfStream; c++)
+                using (var fileStream = file_properties.OpenFile())
                 {
-                    line = txt.ReadLine().Replace(".", ",");
-                    raw_data.Add(line);
-                }
+                    using (StreamReader txt = new StreamReader(fileStream))
+                    {                        
+                        for (int c = 0; !txt.EndOfStream; c++)
+                        {
+                            line = txt.ReadLine().Replace(".", ",");
+                            raw_data.Add(line);
+                        }
+                    }
+                }               
             }
+
+
             return raw_data;
         }
-        public void DrawChart(variation[] variants, List<double> lower_interval)
+        private void ReadDatFile()
         {
-            // сортуємо список и виставляємо перше та останне значення як
-            // мінімум і максимум відповідно.
+            string line = "";
+            List<string> raw_data = new List<string>();
+
+            OpenFileDialog file_properties = new OpenFileDialog();
+            file_properties.InitialDirectory = @"D:\NAU\Statistics\histograms\data";
+            file_properties.FilterIndex = 2;
+            file_properties.RestoreDirectory = true;
+
+            int longest_line = 0, current_line = 0;
+            
+            if (file_properties.ShowDialog() == DialogResult.OK)
+            {
+                using (var fileStream = file_properties.OpenFile())
+                {
+                    using (StreamReader txt = new StreamReader(fileStream))
+                    {
+                        for (int c = 0; !txt.EndOfStream; c++)
+                        {
+                            line = txt.ReadLine().Replace(".", ",");
+                            current_line = ColumnCount(line);
+
+                            if (longest_line < current_line)
+                                longest_line = current_line;
+
+                            raw_data.Add(line);
+                        }
+                    } 
+                }
+            }
+
+            string[] rows = new string[longest_line];
+            for(int i = 0; i<rows.Length; i++)
+            {
+                //rows[i] = raw_data.ToArray();
+            }
+
+                
+            string[] columns = new string[raw_data.Count];
+        }
+
+        private int ColumnCount(string line)
+        {
+            line = line.Trim();
+
+            int count = 0;
+            for (int i = 0; i < line.Length; i++)
+            {
+                if(line[i] == ' ')
+                    count++;
+            }
+            
+            return count;
+        }
+
+        private void DrawChart(variation[] variants, List<double> lower_interval)
+        { 
             List<double> y_max = new List<double>();
             for (int i = 0; i < variants.Length; i++)
                 y_max.Add(variants[i].freq);
@@ -319,14 +567,14 @@ namespace histograms
             y_max = ToSort(y_max);
             lower_interval = ToSort(lower_interval);
             chart.ChartAreas[0].AxisY.Minimum = 0;
-            chart.ChartAreas[0].AxisY.Maximum = Math.Round(y_max[y_max.Count-1],3);
+            chart.ChartAreas[0].AxisY.Maximum = Math.Round(y_max[y_max.Count-1], 3);
             chart.ChartAreas[0].AxisX.Maximum = Math.Round(lower_interval[lower_interval.Count - 1],3);
             chart.ChartAreas[0].AxisX.Minimum = lower_interval[0];
                 
             for (int i = 0; i < variants.Length; i++)
-                chart.Series[0].Points.AddXY(Math.Round(variants[i].value, 3), Math.Round(variants[i].freq, 3));
+                chart.Series[0].Points.AddXY(Math.Round(variants[i].value, 3), Math.Round(variants[i].freq, 3));            
         }
-        public void DrawEmpiricFunction(variation[] variants, List<double> lower_interval, List<double> freqs)
+        private void DrawEmpiricFunction(variation[] variants, List<double> lower_interval, List<double> freqs)
         {
             List<double> X = Empiric.GetNotZero(variants);
             chart1.ChartAreas[0].AxisY.Maximum = 1;
@@ -337,7 +585,7 @@ namespace histograms
             for (int i = 0; i < X.Count; i++)
                 chart1.Series[0].Points.AddXY(Math.Round(variants[i].value, 3), Math.Round(freqs[i],3));
         }
-        public void DrawProbabilityGrid(variation[] variants, List<double> intervals, List<double> freqs, List<double> sample)
+        private void DrawProbabilityGrid(variation[] variants, List<double> intervals, List<double> freqs, List<double> sample)
         {
             List<double> X = Empiric.GetFreqs(variants);
             List<double> temp = new List<double>();
@@ -365,11 +613,173 @@ namespace histograms
             prob_grid.Series[0].Points.Clear();
             prob_grid.Series[1].Points.Clear();
             variationGrid.Rows.Clear();
-            result.Rows.Clear();            
+            result.Rows.Clear();
+
+            chart.Series[1].ClearPoints();
+            chart1.Series[1].ClearPoints();
         }
         #endregion
+
+        #region Distributions
+        //TODO: complete all distributions making
+        private void Normal(List<double> sample, double avg, int classes)
+        {
+            chart.Series[1].ClearPoints();
+            chart1.Series[1].ClearPoints();
+            prob_grid.Series[0].ClearPoints();
+            double step = (sample.Max() - sample.Min()) / classes;
+
+            double b1, b2, b3, b4, b5;
+            b1 = 0.31938153;
+            b2 = -0.356563782;
+            b3 = 1.781477937;
+            b4 = -1.821255978;
+            b5 = 1.330274429;
+
+            
+            //double t = 1 / (1+(0.2316319*u));
+
+            double x2 = 0;           
+            foreach (int num in sample)
+                x2 += Math.Pow(num, 2);
+            x2 = x2/sample.Count;
+
+            double m = avg;
+            double sigma = (sample.Count / (sample.Count - 1)) * Math.Sqrt(x2 - Math.Pow(avg, 2));
+
+            double f = 0;
+            for (double x = sample.Min(); x <= sample.Max(); x += step)
+            {
+                chart.Series[1].Points.AddXY(x, classes * 
+                    Math.Exp(Math.Pow((x - m), 2) / (-2 * Math.Pow(sigma,2))) / (sigma * Math.Sqrt(2 * Math.PI)));
+                
+                //f = 1.0 - Math.Exp(-0.5 * Math.Pow((x - m) / sigma, 2)) * (b1 * t + b2 * t * t + b3 * Math.Pow(t, 3) + b4 * Math.Pow(t, 4) + b5 * Math.Pow(t, 5)) / Math.Sqrt(2 * Math.PI) + 7.7e-8;
+                //chart1.Series[1].Points.AddXY(x, f);
+            }
+        }
+        private void Exponential(List<double> sample, double avg, int classes)
+        {
+            chart.Series[1].ClearPoints();
+            chart1.Series[1].ClearPoints();
+
+            double lambda = 1.0 / avg;
+            double step = (sample.Max() - sample.Min()) / classes;
+
+            double f = 0;
+            for (double x = sample.Min(); x <= sample.Max(); x += step)
+            {
+                f = 1.0 - Math.Exp(-lambda * x);
+                chart1.Series[1].Points.AddXY(x, f);
+                chart.Series[1].Points.AddXY(x, step * lambda * Math.Exp(-lambda * x));
+                prob_grid.Series[0].Points.AddXY(x, (1 - Math.Exp(-lambda * x)));            
+            }
+
+            MessageBox.Show($"lambda = {lambda}", "");
+        }
+        private void Weibull(List<double> sample, double avg, int classes)
+        {
+            sample = ToSort(sample);
+            chart.Series[1].ClearPoints();
+            chart1.Series[1].ClearPoints();
+
+            double h = (sample.Max() - sample.Min()) / classes;                       
+            double alpha, beta, x, probability_func;
+            double A;            
+            double A01 = 0;
+            double A11 = 0;
+            double[] b_vect = new double[2] { 0, 0 };
+
+            int sample_size = sample.Count;
+            int index = 0;
+
+
+            int count = 0, j;
+            for (j = 0; j < sample.Count; j++)
+                if (sample[j] <= sample[index])
+                    count++;
+            
+            for (int l = 0; l < sample_size - 1; l++)
+            {
+                A01 += Math.Log(sample[l]);
+                A11 += Math.Pow(Math.Log(sample[l]), 2);
+                b_vect[0] += Math.Log(Math.Log(1.0 / (1 - GetTheoretical(sample, l))));
+                b_vect[1] += Math.Log(sample[l]) * Math.Log(Math.Log(1.0 / (1 - GetTheoretical(sample, l))));
+            }
+
+            double[,] matrix = new double[2, 2] 
+            { 
+                { (sample_size - 1), A01 }, 
+                { A01, A11 } 
+            };
+
+            //знаходимо значення бета та альфа.
+            beta = (matrix[0, 0] * b_vect[1] - matrix[1, 0] * b_vect[0]) / (matrix[0, 0] * matrix[1, 1] - matrix[0, 1] * matrix[1, 0]);
+
+            A = (b_vect[0] - matrix[0, 1] * beta) / matrix[0, 0];
+            
+            alpha = Math.Exp(-A);
+
+            //виводимо значення для перевірки коректності змодельованої вибірки.
+            MessageBox.Show($"alpha = {alpha}|{A}\nbeta = {beta}", "");
+
+            double step = (sample.Max() - sample.Min()) / 1000.0;
+
+            for (x = sample.Min(); x <= sample.Max(); x += step)
+            {
+                if (x >= 0)
+                {
+                    chart.Series[1].Points.AddXY(x, h * beta * Math.Pow(x, beta - 1) * Math.Exp(-Math.Pow(x, beta) / alpha) / alpha);
+
+                    probability_func = 1.0 - Math.Exp(-Math.Pow(x, beta) / alpha);
+
+                    chart1.Series[1].Points.AddXY(x, probability_func);;
+                }
+            }
+
+        }        
+        private void Flat(List<double> sample, double avg, int classes)
+        {
+            chart.Series[1].ClearPoints();
+            chart1.Series[1].ClearPoints();
+            
+        }
+        private void Arcsin(List<double> sample, double avg, int classes)
+        {
+            chart.Series[1].ClearPoints();
+            chart1.Series[1].ClearPoints();
+            
+        }
+
+        #region Additional
+        
+        private double GetTheoretical(List<double> sample, int indx)
+        {
+            int count = 0, j;
+            for (j = 0; j < sample.Count; j++)
+                if (sample[j] <= sample[indx])
+                    count++;
+
+            return (double)count / sample.Count;
+        }
+
+        #endregion
+        /*private double FindQuantile(double g)
+        {
+            double c0 = 2.515517;
+            double c1 = 0.802853;
+            double c2 = 0.010328;
+            double d1 = 1.432788;
+            double d2 = 0.1892659;
+            double d3 = 0.001308;
+
+            double p = g / 2.0, t = Math.Sqrt(Math.Log(1 / Math.Pow(p, 2)));
+
+            return (t - (c0 + c1 * t + c2 * t * t) / (1 + d1 * t + d2 * t * t + d3 * t * t * t) + 4e-4);
+        }*/
+        #endregion
+
         #region GetValue       
-        public variation[] GetVarianta(List<double> upper_interval, List<double> lower_interval, List<double> sample)
+        private variation[] GetVarianta(List<double> upper_interval, List<double> lower_interval, List<double> sample)
         {
             variation[] variants = new variation[classes];
 
@@ -390,21 +800,18 @@ namespace histograms
             
             return variants;
         }
-        public List<double> GetConfidenceInterval(double local_theta, double squared_value,int N, double probability)
+        private List<double> GetConfidenceInterval(double local_theta, double squared_value,int N, double probability)
         {
-            List<double> trustIntervals = new List<double>();
-            //double miss_prob = 1 - probability;         
+            List<double> trustIntervals = new List<double>();               
             int degreeOfFreedom = N - 1;
             double quantile = 0;
             if (N > 60)
                 quantile = chart.DataManipulator.Statistics.InverseTDistribution(probability, degreeOfFreedom);
             else
-                quantile = chart.DataManipulator.Statistics.InverseNormalDistribution(probability);      
+                quantile = chart.DataManipulator.Statistics.InverseNormalDistribution(probability);
             
-            double lower = local_theta - (quantile * squared_value);
-            result.Rows.Add("lower", $"{local_theta} - ({quantile}*{squared_value})");
-            double upper = local_theta + (quantile * squared_value);
-            result.Rows.Add("upper", $"{local_theta} - ({quantile}*{squared_value})");
+            double lower = local_theta - (quantile * squared_value);            
+            double upper = local_theta + (quantile * squared_value);            
 
             trustIntervals.Add(lower);
             trustIntervals.Add(local_theta);
@@ -420,7 +827,7 @@ namespace histograms
         {
             return (intervals[i] - avg) / sigma;        
         }*/
-        public double GetP(int i, int N)
+        private double GetP(int i, int N)
         {
             return (i - 0.5) / N;
         }
@@ -435,6 +842,7 @@ namespace histograms
         }*/
 
         #endregion
+
         #region Transformation
         public List<string> ToString(List<double> cleaned)
         {
@@ -442,7 +850,7 @@ namespace histograms
             foreach (var i in cleaned)
                 na.Add(i.ToString());
             return na;
-        }
+        }     
         public List<double> ToSort(List<double> sample)
         {
             double forSwap;
@@ -519,7 +927,8 @@ namespace histograms
             }
             else
                 throw new ArgumentException();
-            result.Text += $"\nNOTICE ME!{Math.Round(a, 4)}|-|{Math.Round(b, 4)}\n";
+            
+            MessageBox.Show($"\nA:{Math.Round(a, 4)}\nB:{Math.Round(b, 4)}\n", "");
 
             //добавляємо не аномальні значення в массив
             for (int i = 0; i < sample.Count; i++)
@@ -615,6 +1024,31 @@ namespace histograms
 
             return result;
         }
+    }
+    
+    /// <summary>
+    /// class for changing distributions into linear form(for minimum squares method, for instance)
+    /// </summary>
+    public partial class LinearForm//: Sample
+    {                
+        //TODO: complete these functions
+        //(they're the same as reversed functions actually lol, so i can use them in these cases as well)
+        public double ChangeExponential(double lambda, double x, double f_theoretical)
+        {
+            return Math.Log((1.0 / f_theoretical));
+        }
+        public double ChangeWeibull(double lambda, double x, double f_theoretical)
+        {
+            return Math.Log((1.0 / f_theoretical));
+        }
+        public double ChangeNormal(double lambda, double x, double f_theoretical)
+        {
+            return Math.Log((1.0 / f_theoretical));
+        }
+        public double ChangeUniform(double lambda, double x, double f_theoretical)
+        {
+            return Math.Log((1.0 / f_theoretical));
+        }        
     }
     #endregion
 }
